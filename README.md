@@ -1,5 +1,5 @@
 🎮 CATGAMER - Tienda de Videojuegos
-CATGAMER es una aplicación web desarrollada con Spring Boot para la gestión de una tienda de videojuegos. Incluye funcionalidades como autenticación con JWT, gestión de productos, categorías, carrito de compras y pedidos. La interfaz está basada en Thymeleaf para las vistas y utiliza AJAX para interacciones dinámicas.
+CATGAMER es una aplicación web desarrollada con Spring Boot para la gestión de una tienda de videojuegos. Incluye funcionalidades como autenticación con JWT, gestión de productos, categorías, carrito de compras y pedidos. La interfaz está basada en Thymeleaf
 
 📋 Requisitos
 Java 21
@@ -121,7 +121,7 @@ El filtro valida el token y establece el SecurityContext
 
 
 🔄 Interacción de Componentes
-Frontend (Thymeleaf + JavaScript/AJAX)
+Frontend (Thymeleaf + JavaScript)
 Vistas en src/main/resources/templates/ (index.html, products/list.html, etc.)
 
 Navbar y footer como fragmentos reutilizables (fragments/)

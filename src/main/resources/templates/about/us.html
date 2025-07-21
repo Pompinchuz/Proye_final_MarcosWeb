@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nosotros | CATGAMER</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/nosotros-style.css}">
+</head>
+<body>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-4">
+        <h1 class="text-center gamer-title animate-pulse">Nosotros - La Fuerza Gamer</h1>
+        <div class="gamer-background">
+            <p class="lead gamer-text">Bienvenido a CATGAMER, tu portal definitivo al universo de los videojuegos. Somos una plataforma apasionada dedicada a ofrecer los mejores títulos para todas las plataformas, desde consolas hasta PC. Nuestro equipo, compuesto por fanáticos del gaming, trabaja incansablemente para brindarte la mejor experiencia posible, con reseñas, guías y un catálogo que evoluciona contigo.</p>
+            <p class="gamer-text">Nacimos con una visión: unir a jugadores de todo el mundo en una comunidad vibrante. Cada píxel y cada línea de código reflejan nuestro amor por este arte. ¡Explora nuestro mundo y únete a la aventura!</p>
+        </div>
+        <h2 class="text-center gamer-title mt-5">Nuestro Equipo</h2>
+        <div class="row gamer-team">
+            <div class="col-md-4 mb-4">
+                <div class="card gamer-card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-circle gamer-icon"></i>
+                        <h5 class="card-title gamer-card-title">Santisteban "Toribio"</h5>
+                        <p class="card-text">Líder y experto en shooters. 10 años de experiencia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card gamer-card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-circle gamer-icon"></i>
+                        <h5 class="card-title gamer-card-title">Huilla Rosillo "Chuspi"</h5>
+                        <p class="card-text">Especialista en RPGs y narrativa. 8 años de pasión.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card gamer-card">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-circle gamer-icon"></i>
+                        <h5 class="card-title gamer-card-title">Gato "GatoEsquizo"</h5>
+                        <p class="card-text">Desarrollador backend y fan de estrategia. 6 años.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div th:insert="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/nosotros.js}"></script>
+</body>
+</html>

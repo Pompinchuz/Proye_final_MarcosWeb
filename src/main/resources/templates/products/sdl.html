@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-4">
+        <h2 class="text-center mb-4 gamer-form" >Gestionar Productos (Admin)</h2>
+        <!-- Formulario para agregar nuevo producto -->
+        <form id="addProductForm" class="gamer-form">
+            <div class="mb-3">
+                <label for="titulo" class="form-label" >Título</label>
+                <input type="text" class="form-control gamer-input" id="titulo" required>
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control gamer-input" id="descripcion" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control gamer-input" id="precio" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label for="valoracion" class="form-label">Valoración</label>
+                <input type="number" class="form-control gamer-input" id="valoracion" step="0.1" min="0" max="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="imagenUrl" class="form-label">URL de Imagen</label>
+                <input type="text" class="form-control gamer-input" id="imagenUrl" required>
+            </div>
+            <div class="mb-3">
+                <label for="categoriaId" class="form-label">Categoría</label>
+                <select class="form-control gamer-select" id="categoriaId" required>
+                    <option value="">Selecciona una categoría</option>
+                    <!-- Opciones cargadas via JS -->
+                </select>
+            </div>
+            <button type="button" class="btn btn-gamer" onclick="agregarProducto()">
+                <i class="bi bi-plus-lg"></i> Agregar Producto
+            
+            </button>
+        </form>
+        <hr class="gamer-hr">
+        <h3 class="text-center mb-4 gamer-title">Lista de Productos</h3>
+        <ul id="productosAdmin" class="list-group-list"></ul>
+    </div>
+
+    <!-- Modal para editar producto -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content gamer-modal">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title gamer-title" id="editProductModalLabel">Editar Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm" class="gamer-form">
+                        <input type="hidden" id="editId">
+                        <div class="mb-3">
+                            <label for="editTitulo" class="form-label">Título</label>
+                            <input type="text" class="form-control gamer-input" id="editTitulo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control gamer-input" id="editDescripcion" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPrecio" class="form-label">Precio</label>
+                            <input type="number" class="form-control gamer-input" id="editPrecio" min="0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editValoracion" class="form-label">Valoración</label>
+                            <input type="number" class="form-control gamer-input" id="editValoracion" step="0.1" min="0" max="5" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editImagenUrl" class="form-label">URL de Imagen</label>
+                            <input type="text" class="form-control gamer-input" id="editImagenUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategoriaId" class="form-label">Categoría</label>
+                            <select class="form-select gamer-select" id="editCategoriaId" required>
+                                <option value="">Selecciona una categoría</option>
+                                <!-- Opciones cargadas via JS -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-danger">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="actualizarProducto()">
+                    <i class="bi bi-check-lg"></i>Actualizar
+                    
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

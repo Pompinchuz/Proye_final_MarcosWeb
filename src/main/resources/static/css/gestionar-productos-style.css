@@ -1,0 +1,136 @@
+body {
+    background-color: #1a1a1a; /* Dark background for gamer vibe */
+    color: #ffffff; /* White text for contrast */
+    font-family: 'Orbitron', sans-serif; /* Gamer font */
+}
+
+.gamer-title {
+    color: rgb(255, 0, 0); /* Vibrant red for title */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6); /* Neon glow effect */
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.gamer-hr {
+    border: 0;
+    height: 2px;
+    background: rgb(255, 0, 0);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.gamer-form {
+    background-color: #2a2a2a; /* Dark form background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+.gamer-input {
+    background-color: #2a2a2a; /* Slightly lighter dark background */
+    border: 1px solid rgb(255, 0, 0); /* Red border */
+    color: #ffffff; /* White text */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* Subtle red glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.gamer-input:focus {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Brighter glow on focus */
+    border-color: rgb(255, 100, 100); /* Lighter red border on focus */
+    outline: none;
+}
+
+.gamer-select {
+    background-color: #2a2a2a; /* Dark select background */
+    border: 1px solid rgb(255, 0, 0); /* Red border */
+    color: #ffffff; /* White text */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* Subtle red glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.gamer-select:focus {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Brighter glow on focus */
+    border-color: rgb(255, 100, 100); /* Lighter red border on focus */
+    outline: none;
+}
+
+.btn-gamer {
+    background-color: rgb(255, 0, 0); /* Vibrant red button */
+    color: #ffffff; /* White text */
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Neon red glow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-gamer:hover {
+    background-color: rgb(255, 100, 100); /* Lighter red on hover */
+    box-shadow: 0 0 15px rgba(255, 100, 100, 0.9); /* Brighter glow on hover */
+}
+
+.btn-gamer .bi {
+    font-size: 1.2rem;
+}
+
+.gamer-list {
+    background-color: #2a2a2a; /* Dark list background */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+.gamer-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.gamer-list li:last-child {
+    border-bottom: none;
+}
+
+.gamer-list button {
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.gamer-list button:hover {
+    background-color: rgb(255, 100, 100);
+}
+
+.gamer-modal {
+    background-color: #1a1a1a; /* Dark modal background */
+    border: 2px solid rgb(255, 0, 0); /* Red border */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+.btn-gamer-secondary {
+    background-color: #2a2a2a; /* Darker secondary button */
+    color: #ffffff; /* White text */
+    border: 1px solid rgb(255, 0, 0); /* Red border */
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* Subtle red glow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-gamer-secondary:hover {
+    background-color: rgb(255, 100, 100); /* Lighter red on hover */
+    box-shadow: 0 0 10px rgba(255, 100, 100, 0.9); /* Brighter glow on hover */
+}

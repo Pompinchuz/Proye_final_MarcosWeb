@@ -1,0 +1,59 @@
+body {
+    background-color: #1a1a1a; /* Dark background for gamer vibe */
+    color: #ffffff; /* White text for contrast */
+    font-family: 'Orbitron', sans-serif; /* Gamer font */
+}
+
+.gamer-title {
+    color: rgb(255, 0, 0); /* Vibrant red for title */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6); /* Neon glow effect */
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.carousel-gamer {
+    border: 2px solid rgb(255, 0, 0); /* Red border around carousel */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Red glow effect */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-img {
+    object-fit: cover;
+    height: 500px; /* Fixed height for consistency */
+    filter: brightness(80%); /* Slightly dim images for contrast */
+    transition: filter 0.3s ease;
+}
+
+.carousel-img:hover {
+    filter: brightness(100%); /* Brighten on hover */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(255, 0, 0, 0.7); /* Red controls */
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.anonymous-content {
+    background-color: rgba(255, 0, 0, 0.2); /* Semi-transparent red background */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+.gamer-link {
+    color: rgb(255, 0, 0); /* Red links */
+    text-decoration: none;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    transition: color 0.3s ease;
+}
+
+.gamer-link:hover {
+    color: rgb(255, 100, 100); /* Lighter red on hover */
+    text-shadow: 0 0 10px rgba(255, 100, 100, 0.9);
+}

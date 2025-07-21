@@ -1,0 +1,140 @@
+@view-transition{
+    navigation:auto;
+}
+
+body {
+    background-color: #1a1a1a; /* Dark background for gamer vibe */
+    color: #ffffff; /* White text for contrast */
+    font-family: 'Orbitron', sans-serif; /* Gamer font */
+}
+
+.gamer-title {
+    color: rgb(255, 0, 0); /* Vibrant red for title */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6); /* Neon glow effect */
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.shadow-gamer {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Red glow for containers */
+}
+
+.gamer-input, .gamer-select {
+    background-color: #2a2a2a; /* Slightly lighter dark background */
+    border: 1px solid rgb(255, 0, 0); /* Red border */
+    color: #ffffff; /* White text */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* Subtle red glow */
+    transition: box-shadow 0.3s ease;
+}
+
+.gamer-input:focus, .gamer-select:focus {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Brighter glow on focus */
+    border-color: rgb(255, 100, 100); /* Lighter red border on focus */
+    outline: none;
+}
+
+.btn-gamer {
+    background-color: rgb(255, 0, 0); /* Vibrant red button */
+    color: #ffffff; /* White text */
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px; /* Ensure button is large enough to be visible */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Neon red glow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+.btn-gamer:hover {
+    background-color: rgb(255, 100, 100); /* Lighter red on hover */
+    box-shadow: 0 0 15px rgba(255, 100, 100, 0.9); /* Brighter glow on hover */
+}
+
+.btn-gamer .bi-search {
+    font-size: 1.2rem; /* Adjust icon size */
+}
+
+.gamer-container {
+    background-color: rgba(255, 0, 0, 0.1); /* Subtle red tint for product container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+.gamer-card {
+    background-color: #2a2a2a; /* Dark card background */
+    border: 2px solid rgb(255, 0, 0); /* Red border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.gamer-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Brighter glow on hover */
+}
+
+.gamer-card .card-img-top {
+    height: 350px; /* Increased height to fit full image */
+    object-fit: contain; /* Ensures the full image is visible without cropping */
+    width: 100%; /* Full width of the card */
+    background-color: #1a1a1a; /* Match body background for consistency */
+    filter: brightness(80%); /* Slightly dim images */
+    transition: filter 0.3s ease;
+    cursor: pointer; /* Indicate clickable area */
+}
+
+.gamer-card:hover .card-img-top {
+    filter: brightness(100%); /* Brighten image on hover */
+}
+
+.gamer-card-title {
+    color: rgb(255, 0, 0); /* Red title */
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7); /* Subtle glow */
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.gamer-card .card-text {
+    color: #ffffff; /* White text for price */
+    font-weight: 500;
+}
+
+.gamer-modal {
+    background-color: #1a1a1a; /* Dark modal background */
+    border: 2px solid rgb(255, 0, 0); /* Red border */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+#modalImage {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid rgb(255, 0, 0); /* Red border for image */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Red glow */
+}
+
+.btn-gamer-secondary {
+    background-color: #2a2a2a; /* Darker secondary button */
+    color: #ffffff; /* White text */
+    border: 1px solid rgb(255, 0, 0); /* Red border */
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* Subtle red glow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-gamer-secondary:hover {
+    background-color: rgb(255, 100, 100); /* Lighter red on hover */
+    box-shadow: 0 0 10px rgba(255, 100, 100, 0.9); /* Brighter glow on hover */
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Categorías | CATGAMER</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/gestionar-categorias-style.css}">
+</head>
+<body>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-4">
+        <h2 class="text-center gamer-title">Gestionar Categorías (Admin)</h2>
+        <!-- Formulario para agregar/editar categoría -->
+        <form id="categoriaForm" class="gamer-form">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control gamer-input" id="nombre" required>
+                <div class="invalid-feedback">El nombre es obligatorio.</div>
+            </div>
+            <button type="button" class="btn btn-gamer" onclick="guardarCategoria()">
+                <i class="bi bi-save"></i> Guardar Categoría
+            </button>
+        </form>
+        <hr class="gamer-hr">
+        <h3 class="text-center gamer-title">Lista de Categorías</h3>
+        <table class="table table-dark table-striped gamer-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="categoriasTable"></tbody>
+        </table>
+    </div>
+     <!-- Footer -->
+     <div th:insert="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/categorias.js}"></script>
+
+   
+</body>
+
+
+</html>

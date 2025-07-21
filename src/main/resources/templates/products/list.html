@@ -1,0 +1,108 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos | CATGAMER</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/products-style.css}">
+</head>
+<body>
+    <!-- Navbar fragment -->
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4 gamer-title">Lista de Productos ¡Los mejores precios!</h2>
+
+        <!-- Filtros y búsqueda -->
+        <div class="row mb-4 bg-dark p-3 rounded-3 shadow-gamer">
+            <div class="col-md-6 mb-2 mb-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-dark text-light border-danger gamer-input" id="searchInput" placeholder="Buscar por título...">
+                    <button class="btn btn-gamer" type="button" onclick="filtrarProductos()">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <select class="form-select bg-dark text-light border-danger gamer-select" id="categoriaSelect" onchange="filtrarProductos()">
+                    <option value="">Todas las categorías</option>
+                    <!-- Opciones cargadas via JS -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Contenedor de productos -->
+        <div class="row gamer-container" id="productosContainer">
+            <!-- Ejemplo de tarjeta de producto (renderizado via JS) -->
+            <div class="col-md-4 mb-4">
+                <div class="card gamer-card">
+                    <img src="https://media.vandal.net/m/7-2023/20237201246556_1.jpg" class="card-img-top" alt="DOOM PS4" data-bs-toggle="modal" data-bs-target="#imageModal">
+                    <div class="card-body">
+                        <h5 class="card-title gamer-card-title">DOOM</h5>
+                        <p class="card-text">Precio: $59.99</p>
+                        <button class="btn btn-gamer w-100" onclick="verDescripcion()">Ver Descripción</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Más tarjetas se renderizarán via JS -->
+        </div>
+    </div>
+
+    <!-- Modal para imagen -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-light border-danger gamer-modal">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title gamer-title" id="imageModalLabel">Imagen del Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="modalImage" class="img-fluid" alt="Producto Imagen">
+                </div>
+                <div class="modal-footer border-danger">
+                    <button type="button" class="btn btn-gamer-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para descripción -->
+    <div class="modal fade" id="descripcionModal" tabindex="-1" aria-labelledby="descripcionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light border-danger gamer-modal">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title gamer-title" id="descripcionModalLabel">Descripción del Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalDescripcion"></div>
+                <div class="modal-footer border-danger">
+                    <button type="button" class="btn btn-gamer-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Footer -->
+     <div th:insert="~{fragments/footer :: footer}"></div>
+    <!-- Scripts -->
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/productos.js}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageModal = document.getElementById('imageModal');
+            imageModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget; // Button that triggered the modal
+                const imageSrc = button.getAttribute('src'); // Extract image src from clicked image
+                const modalImage = document.getElementById('modalImage');
+                modalImage.src = imageSrc; // Set the image src in the modal
+            });
+        });
+    </script>
+</body>
+</html>

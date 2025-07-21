@@ -1,0 +1,100 @@
+body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); /* Dynamic dark gradient */
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.gamer-title {
+    color: rgb(255, 0, 0);
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.7);
+    font-weight: 900;
+    font-size: 3rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 15px rgba(255, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.7); }
+    50% { text-shadow: 0 0 20px rgba(255, 100, 100, 1), 0 0 40px rgba(255, 100, 100, 0.9); }
+    100% { text-shadow: 0 0 15px rgba(255, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.7); }
+}
+
+.gamer-background {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.gamer-background::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+    animation: rotate 15s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.gamer-text {
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.gamer-team {
+    margin-top: 30px;
+}
+
+.gamer-card {
+    background-color: #c2bfbf;
+    border: 2px solid rgb(255, 0, 0);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.gamer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(255, 100, 100, 0.8);
+}
+
+.gamer-icon {
+    font-size: 4rem;
+    color: rgb(255, 0, 0);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.gamer-card-title {
+    color: rgb(255, 0, 0);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.gamer-card-text {
+    color: #ffffff;
+    font-size: 1rem;
+}

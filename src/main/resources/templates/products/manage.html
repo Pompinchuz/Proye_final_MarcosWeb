@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestionar Productos | CATGAMER</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/gestionar-productos-style.css}">
+</head>
+<body>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-4">
+        <h2 class="text-center mb-4 gamer-form" >Gestionar Productos (Admin)</h2>
+        <!-- Formulario para agregar nuevo producto -->
+        <form id="addProductForm" class="gamer-form">
+            <div class="mb-3">
+                <label for="titulo" class="form-label" >Título</label>
+                <input type="text" class="form-control gamer-input" id="titulo" required>
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea class="form-control gamer-input" id="descripcion" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="number" class="form-control gamer-input" id="precio" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label for="valoracion" class="form-label">Valoración</label>
+                <input type="number" class="form-control gamer-input" id="valoracion" step="0.1" min="0" max="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="imagenUrl" class="form-label">URL de Imagen</label>
+                <input type="text" class="form-control gamer-input" id="imagenUrl" required>
+            </div>
+            <div class="mb-3">
+                <label for="categoriaId" class="form-label">Categoría</label>
+                <select class="form-control gamer-select" id="categoriaId" required>
+                    <option value="">Selecciona una categoría</option>
+                    <!-- Opciones cargadas via JS -->
+                </select>
+            </div>
+            <button type="button" class="btn btn-gamer" onclick="agregarProducto()">
+                <i class="bi bi-plus-lg"></i> Agregar Producto
+            
+            </button>
+        </form>
+        <hr class="gamer-hr">
+        <h3 class="text-center mb-4 gamer-title">Lista de Productos</h3>
+        <ul id="productosAdmin" class="list-group-list"></ul>
+    </div>
+
+    <!-- Modal para editar producto -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content gamer-modal">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title gamer-title" id="editProductModalLabel">Editar Producto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm" class="gamer-form">
+                        <input type="hidden" id="editId">
+                        <div class="mb-3">
+                            <label for="editTitulo" class="form-label">Título</label>
+                            <input type="text" class="form-control gamer-input" id="editTitulo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control gamer-input" id="editDescripcion" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPrecio" class="form-label">Precio</label>
+                            <input type="number" class="form-control gamer-input" id="editPrecio" min="0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editValoracion" class="form-label">Valoración</label>
+                            <input type="number" class="form-control gamer-input" id="editValoracion" step="0.1" min="0" max="5" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editImagenUrl" class="form-label">URL de Imagen</label>
+                            <input type="text" class="form-control gamer-input" id="editImagenUrl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategoriaId" class="form-label">Categoría</label>
+                            <select class="form-select gamer-select" id="editCategoriaId" required>
+                                <option value="">Selecciona una categoría</option>
+                                <!-- Opciones cargadas via JS -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-danger">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="actualizarProducto()">
+                    <i class="bi bi-check-lg"></i>Actualizar
+                    
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Footer -->
+    <div th:insert="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/productos-admin.js}"></script>  <!-- Renombra o crea nuevo JS para admin productos -->
+
+ <!-- Incluye navbar.js para lógica dinámica -->
+    <script>
+        const token = localStorage.getItem('jwt');
+        if (!token) {
+            window.location.href = '/login';  // Redirigir si no autenticado
+        }
+
+        // Cargar lista de productos para admin (con opciones edit/delete)
+        $.ajax({
+            url: '/api/productos',
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(data) {
+                let productList = '';
+                data.forEach(producto => {
+                    productList += '<li>' + producto.titulo + ' - $' + producto.precio + 
+                                   ' <button onclick="editarProducto(' + producto.id + ')">Editar</button>' +
+                                   ' <button onclick="eliminarProducto(' + producto.id + ')">Eliminar</button></li>';
+                });
+                $('#productosAdmin').html(productList);
+            },
+            error: function() {
+                alert('Error cargando productos. Sesión inválida.');
+                logout();
+            }
+        });
+
+        function agregarProducto() {
+            const producto = {
+                titulo: $('#titulo').val(),
+                descripcion: $('#descripcion').val(),
+                precio: parseFloat($('#precio').val()),
+                valoracion: parseFloat($('#valoracion').val()),
+                imagenUrl: $('#imagenUrl').val()
+            };
+            $.ajax({
+                url: '/api/productos',
+                type: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token },
+                contentType: 'application/json',
+                data: JSON.stringify(producto),
+                success: function() {
+                    alert('Producto agregado.');
+                    location.reload();  // Recargar para ver cambios
+                },
+                error: function() {
+                    alert('Error agregando producto.');
+                }
+            });
+        }
+
+        function editarProducto(id) {
+            // Implementa lógica para editar (puedes usar un modal o form dinámico)
+            alert('Editar producto ID: ' + id + ' - Implementa esta función.');
+            // Ej: Carga datos via GET /api/productos/{id}, luego PUT
+        }
+
+        function eliminarProducto(id) {
+            if (confirm('¿Eliminar producto ID: ' + id + '?')) {
+                $.ajax({
+                    url: '/api/productos/' + id,
+                    type: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + token },
+                    success: function() {
+                        alert('Producto eliminado.');
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Error eliminando producto.');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

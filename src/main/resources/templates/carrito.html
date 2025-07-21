@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito | CATGAMER</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/carrito-style.css}">
+</head>
+<body>
+    <div th:insert="~{fragments/navbar :: navbar}"></div>
+    <div class="container mt-4">
+        <h2 class="text-center gamer-title">Carrito de Combate</h2>
+        <div class="gamer-background">
+            <table class="table table-dark table-striped gamer-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="carritoTable"></tbody>
+            </table>
+            <div class="d-flex justify-content-between">
+                <h3 class="gamer-total">Total: <span id="total">0.00</span> Créditos</h3>
+                <button class="btn btn-danger gamer-btn" onclick="vaciarCarrito()">Vaciar Carrito</button>
+            </div>
+            <button class="btn btn-primary gamer-btn mt-3" onclick="procederPago()">
+                <i class="bi bi-credit-card"></i> Proceder con Pago
+            </button>
+        </div>
+    </div>
+    <!-- Modal para datos de pago -->
+    <div class="modal fade" id="pagoModal" tabindex="-1" aria-labelledby="pagoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content gamer-modal">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title gamer-title" id="pagoModalLabel">Portal de Pago</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="datosPago" class="form-label">Detalles de Pago (ej: Tarjeta 1234-5678)</label>
+                            <input type="text" class="form-control gamer-input" id="datosPago" placeholder="Ingresa tus datos">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-danger">
+                    <button type="button" class="btn btn-gamer-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-gamer" onclick="finalizarCompra()">
+                        <i class="bi bi-check-circle"></i> Confirmar Pago
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    
+    
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script>
+        const token = localStorage.getItem('jwt');
+        $.ajax({
+            url: '/api/carrito',
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(carrito) {
+                let table = '';
+                let total = 0;
+                carrito.items.forEach(item => {
+                    let producto = item.producto;
+                    let subtotal = producto.precio * item.cantidad;
+                    table += `<tr><td>${producto.titulo}</td><td>${item.cantidad}</td><td>${producto.precio}</td><td>${subtotal}</td></tr>`;
+                    total += subtotal;
+                });
+                $('#carritoTable').html(table);
+                $('#total').text(total);
+            }
+        });
+
+        function procederPago() {
+            $('#pagoModal').modal('show');
+        }
+
+        function finalizarCompra() {
+            const datosPago = $('#datosPago').val();
+            $.ajax({
+                url: '/api/pedidos',
+                type: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token },
+                data: datosPago,
+                success: function() {
+                    alert('Compra finalizada.');
+                    $('#pagoModal').modal('hide');
+                    // Vaciar carrito local o redirect
+                    location.reload();
+                },
+                error: function() {
+                    alert('Error en el pago.');
+                }
+            });
+        }
+
+        function vaciarCarrito() {
+            if (confirm('¿Estás seguro de vaciar el carrito?')) {
+                $.ajax({
+                    url: '/api/carrito/vaciar',
+                    type: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + token },
+                    success: function() {
+                        alert('Carrito vaciado.');
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Error al vaciar el carrito.');
+                    }
+                });
+            }
+        }
+    </script>
+
+
+<footer>
+    <!-- Footer -->
+    <div th:insert="~{fragments/footer :: footer}"></div>
+</footer>
+
+</body>
+</html>

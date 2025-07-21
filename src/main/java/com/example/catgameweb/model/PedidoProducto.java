@@ -61,7 +61,7 @@ public class PedidoProducto {
         this.precioUnitario = precioUnitario;
     }
 
-    // Getters/Setters...
+   
 
 
     

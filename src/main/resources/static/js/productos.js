@@ -1,4 +1,4 @@
-// src/main/resources/static/js/productos.js
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('jwt');

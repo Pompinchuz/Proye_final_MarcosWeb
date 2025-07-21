@@ -44,7 +44,6 @@ $.ajax({
         logout();
     }
 });
-
 function agregarProducto() {
     if (!validateForm('addProductForm')) return;
     const producto = {
@@ -53,7 +52,7 @@ function agregarProducto() {
         precio: parseFloat($('#precio').val()),
         valoracion: parseFloat($('#valoracion').val()),
         imagenUrl: $('#imagenUrl').val(),
-        categoria: { id: parseInt($('#categoriaId').val()) }  // Incluye categoría
+        categoria: { id: parseInt($('#categoriaId').val()) }
     };
     $.ajax({
         url: '/api/productos',
@@ -66,11 +65,14 @@ function agregarProducto() {
             location.reload();
         },
         error: function(xhr) {
-            alert('Error agregando producto: ' + xhr.responseText);
+            if (xhr.status === 400) {
+                alert('Error: ' + xhr.responseText);  // Muestra mensaje de duplicado
+            } else {
+                alert('Producto ya existe en la base de datos.');
+            }
         }
     });
 }
-
 function editarProducto(id) {
     $.ajax({
         url: '/api/productos/' + id,

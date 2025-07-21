@@ -9,7 +9,7 @@ public class UsuarioDTO {
     @NotBlank(message = "El email es obligatorio")
     private String email;
     @NotBlank(message = "Contraseña obligatoria")
-    
-    private String password;  // Encriptada
-    private Long rolId;  // Para referencia a rol
+
+    private String password;  
+    private Long rolId;  
 }

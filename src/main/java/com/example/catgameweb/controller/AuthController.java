@@ -53,7 +53,7 @@ public class AuthController {
         cookie.setHttpOnly(true);  // Seguro contra JS access
         cookie.setSecure(false);  // Cambia a true en prod con HTTPS
         cookie.setPath("/");
-        cookie.setMaxAge(3600);  // 1 hora, ajusta según jwt.expiration
+        cookie.setMaxAge(3600);  
         response.addCookie(cookie);
     }
 }

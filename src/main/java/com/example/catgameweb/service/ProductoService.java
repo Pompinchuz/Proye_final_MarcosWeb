@@ -38,7 +38,14 @@ public class ProductoService {
         return productos;
     }
 
-    public Producto crear(@Valid Producto producto) {  // @Valid para validar
+    public Producto crear(@Valid Producto producto) {
+        // Verifica si ya existe un producto con el mismo título
+        Optional<Producto> existingProduct = productoRepository.findAll().stream()
+                .filter(p -> p.getTitulo().equalsIgnoreCase(producto.getTitulo()))
+                .findFirst();
+        if (existingProduct.isPresent()) {
+            throw new IllegalStateException("Ya existe un producto con el título: " + producto.getTitulo());
+        }
         return productoRepository.save(producto);
     }
 

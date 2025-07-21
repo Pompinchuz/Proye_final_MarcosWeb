@@ -9,7 +9,9 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;  // Ej: "Acción", "Estrategia"
+
+    @Column(unique = true) 
+    private String nombre; 
 
     
     public Long getId() {
@@ -25,7 +27,7 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    // Getters y Setters...
+ 
 
 
 

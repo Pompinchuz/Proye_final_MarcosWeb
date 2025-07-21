@@ -13,7 +13,7 @@ public class CategoriaDTO {
     
     private Long id;
     @NotBlank(message = "El nombre es obligatorio")
-    private String nombre;  // Ej: "Acción", "Estrategia"
+    private String nombre;  
 
     
     public Long getId() {

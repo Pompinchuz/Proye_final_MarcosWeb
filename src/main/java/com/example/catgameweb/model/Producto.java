@@ -14,22 +14,19 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@NotBlank(message = "El título es obligatorio")
+    @Column(unique = true)  // Añade esta línea para evitar duplicados por título
     private String titulo;
 
-    //@NotBlank(message = "La descripción es obligatoria")
+
     private String descripcion;
 
-    //@NotNull(message = "El precio es obligatorio")
-    //@Positive(message = "El precio debe ser positivo")
+
     private Double precio;
 
-    //@NotNull(message = "La valoración es obligatoria")
-    //@Min(value = 0, message = "La valoración debe ser al menos 0")
-    //@Max(value = 5, message = "La valoración debe ser como máximo 5")
+
     private Double valoracion;
 
-    //@NotBlank(message = "La URL de la imagen es obligatoria")
+
     private String imagenUrl;
 
     @ManyToOne
@@ -91,7 +88,7 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    // Getters y Setters...
+  
 
 
     

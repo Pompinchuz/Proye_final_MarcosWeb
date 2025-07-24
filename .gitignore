@@ -37,3 +37,4 @@ build/
 #IGNORAR DATOS SENSIBLES
 
 .env
+.gitignore

@@ -37,4 +37,8 @@ build/
 #IGNORAR DATOS SENSIBLES
 
 .env
-.gitignore
+application.properties
+application.yml
+application-dev.properties
+application-test.properties
+application-local.properties
